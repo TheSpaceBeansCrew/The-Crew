@@ -1,0 +1,31 @@
+import discord
+from keep_alive import keep_alive
+from discord.ext import commands
+client = discord.Client()
+
+
+@client.event
+async def on_ready():
+  await client.change_presence(status=discord.Status.idle, activity=discord.Game('eating meat'))
+
+  print('we have logged in as {0.user}'.format(client))
+
+@client.event
+async def on_message(message):
+  if message.author == client.user:
+    return
+
+  if message.content.startswith('S!'):
+    await message.channel.send('hi!')
+
+  if message.content.startswith('s!'):
+    await message.channel.send('hi!')
+
+  if message.content.startswith('im hungry'):
+   await message.channel.send('eat lots of meat!')
+ 
+   
+
+
+keep_alive()
+client.run('ODMyODAyODA1MjgxNDU2MTQ4.YHpGDQ.USPRKyPEd0Y31TGo23h_VgpZH6Y')
